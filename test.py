@@ -1,6 +1,9 @@
 import re
 
 def read_data():
+    """
+    Function to read data from a file line by line while removing the new lines.
+    """
     data = []
     with open("b_read_on.txt", "r+") as file:
         i = 0
@@ -14,6 +17,9 @@ def read_data():
 
 
 def filter_data():
+    """
+    Remove the first two rows from the data
+    """
     file_data = read_data()
     data = lambda x : [x for x in file_data]
     my_data = data(file_data)
@@ -22,6 +28,10 @@ def filter_data():
 
 
 def get_highest_signup(even_indice_list, n):
+    """
+    Split an array into multiple arrays and get the largest value of the arrays[1] value (signup time)
+    """
+    # NB: This function does NOT function as expected, help fix it :)
     max = even_indice_list[0]
     for i in range(1, n):
         if even_indice_list[i] > max:
@@ -31,6 +41,12 @@ def get_highest_signup(even_indice_list, n):
 
 
 def get_highest_signup_days():
+    """
+    Remove all spaces before, between and after values. Only filter out even indices and push their value 
+    to a new array (even indices represent the libraries).
+    get the highest library signup time and return it's value
+    """
+    # NB: This function also has some bugs, works partially
     new_data = []
     data = filter_data()
     unspaced_data = ([re.sub('\s+', ' ', i).strip() for i in data if i is not ''][:-1])
@@ -49,7 +65,7 @@ def get_highest_signup_days():
     return str(hsd)[1]
 
 
-
+# Run all the functions
 if __name__ == "__main__":
     data = filter_data()
     filter_data()
